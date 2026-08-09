@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grant Chucri's Road to IRONMAN 70.3 · La Quinta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#070b16;
+    --bg2:#0a101f;
+    --panel:#0d1425;
+    --panel2:#111a30;
+    --line:#1b2742;
+    --line2:#24314f;
+    --ink:#f2f5fc;
+    --ink-dim:#8b96b4;
+    --ink-faint:#5b6683;
+    --red:#e8323c;
+    --sun1:#ffb347;
+    --sun2:#ff7847;
+    --sun3:#ff4e50;
+    --blue:#5b8bd9;
+    --blue-dim:#3d5a94;
+    --run:#ff5a4e;
+    --bike:#3da5f4;
+    --swim:#2fd6b0;
+    --strength:#b06af5;
+    --yoga:#e6c37a;
+    --brick:#ff9838;
+    --rest:#5b657e;
+    --race:#ffd23f;
+    --font-display:'Archivo Black','Arial Black',sans-serif;
+    --font-body:'Archivo','Helvetica Neue',Arial,sans-serif;
+    --font-mono:'JetBrains Mono','SF Mono',Consolas,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  h1,.wk-phase,.ov-phase,.day-name,.stat .v,.fs .n,.quote p,.res .r-name,.brand,.wo.race-card .wo-title{font-weight:900}
+  html{scroll-behavior:smooth;overflow-x:hidden}
+  @media (hover:none){.bar .tip{display:none}}
+  body{background:var(--bg);color:var(--ink);font-family:var(--font-body);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  ::selection{background:var(--sun2);color:#0a0a0a}
+
+  /* ---------- NAV ---------- */
+  nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+      padding:18px 44px;background:rgba(7,11,22,.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(27,39,66,.6)}
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-size:14px;letter-spacing:.6px;color:var(--ink);text-decoration:none;text-transform:uppercase;white-space:nowrap;min-width:0}
+  .tminus{white-space:nowrap;flex:0 0 auto}
+  .brand .palm{width:22px;height:22px;flex:0 0 auto}
+  .brand em{font-style:normal;color:var(--sun2)}
+  .nav-links{display:flex;gap:36px}
+  .nav-links a{font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.28em;color:var(--ink-dim);text-decoration:none;text-transform:uppercase;transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .tminus{font-family:var(--font-mono);font-size:11px;letter-spacing:.2em;color:var(--sun1)}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;padding:96px 44px 0;min-height:78vh;display:flex;flex-direction:column;justify-content:flex-start;
+        background:
+          radial-gradient(1100px 500px at 78% 8%, rgba(255,78,80,.14), transparent 60%),
+          radial-gradient(900px 420px at 88% 30%, rgba(255,179,71,.10), transparent 60%),
+          radial-gradient(700px 500px at 8% 90%, rgba(61,90,148,.12), transparent 60%),
+          var(--bg)}
+  .kicker{display:flex;align-items:center;gap:14px;font-family:var(--font-mono);font-size:12px;font-weight:700;
+          letter-spacing:.34em;color:var(--blue);text-transform:uppercase;margin-bottom:34px}
+  .kicker .dot{width:9px;height:9px;border-radius:50%;background:var(--red);box-shadow:0 0 14px rgba(232,50,60,.9);animation:pulse 2.2s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  h1{font-family:var(--font-display);font-size:clamp(56px,10.5vw,158px);line-height:.92;letter-spacing:-.5px;text-transform:uppercase}
+  h1 .l1{display:block;color:var(--ink)}
+  h1 .l2{display:block}
+  h1 .grad{background:linear-gradient(92deg,var(--sun1) 0%,var(--sun2) 45%,var(--sun3) 100%);
+           -webkit-background-clip:text;background-clip:text;color:transparent;
+           filter:drop-shadow(0 0 26px rgba(255,110,71,.42))}
+  .hero-cta{display:flex;gap:16px;margin-top:52px;position:relative;z-index:5}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:19px 30px;font-family:var(--font-mono);font-size:12px;font-weight:700;
+       letter-spacing:.24em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:all .2s}
+  .btn-primary{background:linear-gradient(90deg,#ff7847,#e8323c);color:#fff;box-shadow:0 8px 30px rgba(232,60,60,.30)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 38px rgba(232,60,60,.44)}
+  .btn-ghost{background:transparent;color:var(--ink);border-color:var(--line2)}
+  .btn-ghost:hover{border-color:var(--ink-dim);background:rgba(255,255,255,.03)}
+  .hero-scape{position:absolute;left:0;right:0;bottom:-2px;width:100%;pointer-events:none;line-height:0}
+  .hero-scape svg{width:100%;height:auto;display:block}
+
+  /* ---------- QUOTE ---------- */
+  .quote{padding:110px 44px 118px;text-align:center;background:linear-gradient(180deg,#0a101f 0%,#080d19 100%);border-top:1px solid rgba(27,39,66,.5)}
+  .quote .qmark{font-family:var(--font-display);font-size:44px;color:var(--blue-dim);line-height:1;margin-bottom:18px}
+  .quote p{font-family:var(--font-display);font-size:clamp(22px,3.4vw,42px);line-height:1.25;max-width:1020px;margin:0 auto;text-transform:none}
+  .quote .attr{margin-top:26px;font-family:var(--font-mono);font-size:11px;letter-spacing:.3em;color:var(--ink-faint);text-transform:uppercase}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:88px 44px}
+  .sec-label{font-family:var(--font-mono);font-size:12px;font-weight:700;letter-spacing:.34em;color:var(--blue);text-transform:uppercase;margin-bottom:36px}
+
+  /* ---------- WEEK HEADER CARD ---------- */
+  .week-head{border:1px solid var(--line);background:linear-gradient(120deg,rgba(17,26,48,.7),rgba(10,16,31,.9));
+             display:flex;align-items:center;justify-content:space-between;padding:30px 34px;gap:20px}
+  .wk-nav{white-space:nowrap}
+  .week-head-center{text-align:center;flex:1;min-width:0}
+  .wk-meta{display:flex;align-items:center;justify-content:center;gap:14px;font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.26em;color:var(--blue);text-transform:uppercase}
+  .badge{background:var(--red);color:#fff;padding:3px 9px;font-size:10px;letter-spacing:.18em}
+  .badge.rec{background:#2c6e63}
+  .badge.race{background:#8a6d00;color:#ffe9a3}
+  .wk-phase{font-family:var(--font-display);font-size:clamp(30px,4vw,46px);letter-spacing:.5px;color:var(--blue);text-transform:uppercase;margin:6px 0 4px}
+  .wk-phase.race{color:var(--race)}
+  .wk-phase.rec,.ov-phase.rec{color:#7fa8a0}
+  .wk-sub{font-size:15px;color:var(--ink-dim)}
+  .wk-name{font-size:13px;color:var(--ink-faint);margin-top:4px;font-family:var(--font-mono);letter-spacing:.06em}
+
+  /* ---------- SLIDER ---------- */
+  .slider-wrap{margin:26px 2px 34px}
+  input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:6px;border-radius:3px;outline:none;background:var(--line2)}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:18px;height:18px;border-radius:50%;
+      background:var(--ink);border:4px solid var(--sun2);cursor:pointer;box-shadow:0 0 12px rgba(255,120,71,.6)}
+  input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--ink);border:4px solid var(--sun2);cursor:pointer}
+
+  /* ---------- CALENDAR GRID ---------- */
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:0;border-left:1px solid var(--line)}
+  .day-col{border-right:1px solid var(--line);padding:18px 14px 26px;min-height:360px;position:relative}
+  .day-col.today{background:linear-gradient(180deg,rgba(232,50,60,.10),rgba(232,50,60,.02));box-shadow:inset 0 3px 0 var(--red)}
+  .day-col.raceday{background:linear-gradient(180deg,rgba(255,210,63,.10),rgba(255,210,63,.02));box-shadow:inset 0 3px 0 var(--race)}
+  .day-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:14px}
+  .day-name{font-family:var(--font-display);font-size:17px;letter-spacing:.4px}
+  .day-col.today .day-name{color:var(--red)}
+  .day-col.raceday .day-name{color:var(--race)}
+  .day-date{font-family:var(--font-mono);font-size:10px;letter-spacing:.18em;color:var(--ink-faint);margin-top:3px}
+  .today-tag{background:var(--red);color:#fff;font-family:var(--font-mono);font-size:9px;font-weight:700;letter-spacing:.16em;padding:3px 7px}
+  .race-tag{background:var(--race);color:#241c00;font-family:var(--font-mono);font-size:9px;font-weight:700;letter-spacing:.16em;padding:3px 7px}
+
+  /* ---------- WORKOUT CARDS ---------- */
+  .wo{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--rest);padding:12px 12px 13px;margin-bottom:10px;transition:transform .15s,border-color .15s}
+  .wo:hover{transform:translateY(-2px);border-color:var(--line2)}
+  .wo-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
+  .wo-sport{font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase}
+  .wo-int{font-family:var(--font-mono);font-size:8.5px;font-weight:700;letter-spacing:.12em;padding:2.5px 6px;border-radius:2px;background:#12351f;color:#4fd88a}
+  .wo-int.an{background:#3a1420;color:#ff7a6e}
+  .wo-title{font-size:13.5px;font-weight:700;line-height:1.3;margin-bottom:5px}
+  .wo-stats{font-family:var(--font-mono);font-size:10.5px;font-weight:500;letter-spacing:.06em;color:var(--blue);margin-bottom:5px}
+  .wo-note{font-size:11px;line-height:1.45;color:var(--ink-dim)}
+  .wo.race-card{border:1px solid rgba(255,210,63,.5);border-left:3px solid var(--race);background:linear-gradient(140deg,#1b1707,#0d1425)}
+  .wo.race-card .wo-title{font-family:var(--font-display);font-size:14.5px;color:var(--race)}
+  .wo.rest-card{background:transparent;border-style:dashed}
+
+  /* ---------- LEGEND ---------- */
+  .legend{display:flex;flex-wrap:wrap;gap:22px;margin-top:26px;padding-top:20px;border-top:1px solid var(--line)}
+  .lg{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.22em;color:var(--ink-dim);text-transform:uppercase}
+  .lg i{width:11px;height:11px;display:inline-block}
+
+  /* ---------- OVERVIEW ---------- */
+  .ov-card{border:1px solid var(--line);background:linear-gradient(120deg,rgba(17,26,48,.55),rgba(10,16,31,.9));padding:36px;display:flex;gap:34px;align-items:stretch;flex-wrap:wrap}
+  .ov-left{flex:1 1 300px;min-width:270px}
+  .ov-meta{display:flex;align-items:center;gap:14px;font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.24em;color:var(--blue);text-transform:uppercase}
+  .ov-phase{font-family:var(--font-display);font-size:clamp(40px,5vw,64px);color:var(--blue);letter-spacing:1px;margin:10px 0 6px;text-transform:uppercase}
+  .ov-phase.race{color:var(--race)}
+  .ov-desc{color:var(--ink-dim);font-size:15px}
+  .ov-week-of{font-family:var(--font-mono);font-size:12px;letter-spacing:.12em;color:var(--ink-faint);margin-top:6px}
+  .ov-left .btn{margin-top:28px;background:linear-gradient(90deg,#4a76c4,#5b8bd9);color:#fff;box-shadow:0 8px 26px rgba(75,118,196,.28)}
+  .ov-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;flex:1.4 1 460px}
+  .stat{border:1px solid var(--line);background:rgba(7,11,22,.5);padding:22px 20px;display:flex;flex-direction:column;justify-content:space-between}
+  .stat .k{font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.26em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:16px}
+  .stat .v{font-family:var(--font-display);font-size:40px;line-height:1}
+  .stat .v small{font-family:var(--font-mono);font-size:12px;color:var(--ink-dim);margin-left:5px;letter-spacing:.06em}
+
+  /* ---------- CHART ---------- */
+  .chart-labels{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10px;letter-spacing:.28em;color:var(--ink-faint);text-transform:uppercase;margin:52px 0 16px}
+  .chart{display:flex;align-items:flex-end;gap:5px;height:220px}
+  .bar{flex:1;position:relative;cursor:pointer;transition:filter .15s;border-radius:1px 1px 0 0}
+  .bar:hover{filter:brightness(1.5)}
+  .bar.current{outline:2px solid #cfe0ff;outline-offset:2px}
+  .bar .tip{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:#03060d;border:1px solid var(--line2);
+            padding:8px 11px;font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;color:var(--ink);white-space:nowrap;opacity:0;visibility:hidden;
+            pointer-events:none;transition:opacity .15s;z-index:10}
+  .bar:hover .tip{opacity:1;visibility:visible}
+  .phase-legend{display:flex;flex-wrap:wrap;gap:22px;margin-top:24px}
+
+  /* ---------- RESULTS ---------- */
+  .results-intro{color:var(--ink-dim);font-size:15px;max-width:760px;margin-bottom:36px;line-height:1.6}
+  .res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+  .res{border:1px solid var(--line);background:var(--panel);padding:22px;position:relative;overflow:hidden}
+  .res::after{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--sun1),var(--sun3))}
+  .res .r-date{font-family:var(--font-mono);font-size:10px;letter-spacing:.24em;color:var(--ink-faint);text-transform:uppercase}
+  .res .r-name{font-family:var(--font-display);font-size:16px;margin:9px 0 12px;line-height:1.25}
+  .res .r-time{font-family:var(--font-mono);font-size:13px;color:var(--sun1);letter-spacing:.05em}
+  .res .r-split{font-family:var(--font-mono);font-size:10.5px;color:var(--ink-dim);margin-top:7px;letter-spacing:.04em;line-height:1.7}
+
+  /* ---------- FOOTER STATS ---------- */
+  .foot-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:20px;padding:70px 44px 60px;
+              border-top:1px solid var(--line);background:#060a13;text-align:center}
+  .fs .n{font-family:var(--font-display);font-size:56px;color:var(--blue);line-height:1}
+  .fs .n.gold{color:var(--race)}
+  .fs .t{font-family:var(--font-mono);font-size:10px;font-weight:700;letter-spacing:.3em;color:var(--ink-faint);text-transform:uppercase;margin-top:12px}
+  footer{padding:34px 44px 60px;background:#060a13;text-align:center;position:relative}
+  footer .palms{opacity:.5;margin-bottom:18px}
+  footer p{font-family:var(--font-mono);font-size:10px;letter-spacing:.22em;color:var(--ink-faint);text-transform:uppercase;line-height:2}
+
+  @media(max-width:1100px){.cal-grid{grid-template-columns:repeat(4,1fr)}.day-col{border-bottom:1px solid var(--line)}}
+  @media(max-width:1000px){
+    .brand .b-rest{display:none}
+  }
+  @media(max-width:760px){
+    nav{padding:14px 18px}.nav-links{display:none}
+    .brand{font-size:13px;gap:8px}
+    .tminus{font-size:10px}
+    .hero{padding:64px 20px 0;min-height:60vh}
+    .hero-cta{gap:10px;flex-wrap:wrap}
+    .btn{padding:15px 20px;font-size:11px;letter-spacing:.16em}
+    section{padding:64px 20px}
+    .cal-grid{grid-template-columns:repeat(2,1fr)}
+    .week-head{flex-wrap:wrap;padding:24px 18px;text-align:center}
+    .week-head-center{order:-1;flex-basis:100%;margin-bottom:16px}
+    .wk-nav{flex:1;justify-content:center}
+    .foot-stats{padding:50px 20px 40px}
+    .fs .n{font-size:42px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="#top">
+    <svg class="palm" viewBox="0 0 24 24" fill="none"><path d="M12.5 22c-.3-4.5-.2-8.5.5-12" stroke="#ff7847" stroke-width="1.6" stroke-linecap="round"/><path d="M13 10C10.5 7.5 7.5 7 5 8.5c2.8.2 5 1 6.8 2.5M13 10c-.5-3.5.8-6 3.5-7-1.2 2.5-1.5 4.6-1 6.5M13 10c2-2.7 4.8-3.5 7.5-2.5-2.7.8-4.7 2-6 3.6M13 10c3.4-.6 6 .4 7.7 2.8-2.6-1.3-4.9-1.6-7-1.1M13 10C9.6 9.6 7 10.8 5.5 13.4c2.4-1.5 4.7-2 6.9-1.6" stroke="#2fd6b0" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <span class="b-text"><span class="b-name">GRANT CHUCRI</span><span class="b-rest">'S ROAD TO IRONMAN&nbsp;<em>70.3</em></span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#calendar">Calendar</a>
+    <a href="#overview">Overview</a>
+    <a href="#results">Past Races</a>
+  </div>
+  <div class="tminus" id="tminus">T-000d</div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="kicker"><span class="dot"></span> MISSION &nbsp;·&nbsp; IRONMAN 70.3 LA QUINTA &nbsp;·&nbsp; DECEMBER 6, 2026</div>
+  <h1>
+    <span class="l1">ROAD TO</span>
+    <span class="l2"><span class="grad">THE DESERT.</span></span>
+  </h1>
+  <div class="hero-cta">
+    <a class="btn btn-primary" href="#calendar" id="btn-today">Today's Workout &rarr;</a>
+    <a class="btn btn-ghost" href="#overview">Full Plan</a>
+  </div>
+  <div class="hero-scape">
+    <svg viewBox="0 0 1440 260" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="sunset" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ffb347" stop-opacity=".85"/>
+          <stop offset="1" stop-color="#ff4e50" stop-opacity=".55"/>
+        </linearGradient>
+      </defs>
+      <circle cx="1080" cy="150" r="74" fill="url(#sunset)" opacity=".8"/>
+      <circle cx="1080" cy="150" r="110" fill="url(#sunset)" opacity=".14"/>
+      <!-- mountain ridges -->
+      <path d="M0 216 L110 168 L215 205 L340 148 L470 208 L590 172 L720 214 L860 160 L990 210 L1140 178 L1270 212 L1370 190 L1440 208 L1440 260 L0 260 Z" fill="#0b1222"/>
+      <path d="M0 238 L160 204 L330 236 L520 200 L710 240 L900 208 L1100 240 L1290 214 L1440 236 L1440 260 L0 260 Z" fill="#080d19"/>
+      <!-- palm cluster left -->
+      <g fill="#04070f">
+        <path d="M138 258 c-4-34-3-62 4-88 l6 1 c-6 26-6 54-2 87 Z"/>
+        <path d="M146 172 c-16-16-36-20-56-11 18 2 33 7 45 16 M146 172 c-3-22 5-38 22-45 -8 16-10 29-7 41 M146 172 c13-17 30-22 48-16 -17 5-30 13-38 23 M146 172 c22-4 39 3 50 18 -17-8-32-11-45-8 M146 172 c-22-2-38 6-48 23 16-10 31-14 44-12" stroke="#04070f" stroke-width="7" fill="none" stroke-linecap="round"/>
+      </g>
+      <!-- palm cluster right -->
+      <g fill="#04070f">
+        <path d="M1235 259 c5-40 3-72-5-101 l-7 1 c7 30 8 63 4 100 Z"/>
+        <path d="M1228 160 c-19-19-42-24-66-13 21 2 39 8 53 19 M1228 160 c-4-26 6-44 26-52 -10 18-12 33-8 47 M1228 160 c15-20 35-26 56-19 -20 6-35 15-44 27 M1228 160 c26-5 46 3 59 21 -20-9-38-13-53-9 M1228 160 c-26-2-45 7-57 27 19-12 36-17 52-14" stroke="#04070f" stroke-width="8" fill="none" stroke-linecap="round"/>
+        <path d="M1310 259 c3-27 2-49-3-68 l-5 1 c5 20 5 42 2 67 Z"/>
+        <path d="M1305 192 c-13-13-28-16-44-9 14 1 26 5 36 13 M1305 192 c-2-17 4-30 17-35 -6 12-8 22-5 31 M1305 192 c10-13 23-17 37-13 -13 4-23 10-29 18 M1305 192 c-17-1-30 5-38 18 13-8 24-11 35-9" stroke="#04070f" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+      </g>
+    </svg>
+  </div>
+</header>
+
+<div class="quote">
+  <div class="qmark">&ldquo;</div>
+  <p id="quoteText"></p>
+  <div class="attr" id="quoteAttr"></div>
+</div>
+
+<section id="calendar">
+  <div class="sec-label">&sect;01 &nbsp;&middot;&nbsp; CALENDAR</div>
+  <div class="week-head">
+    <button class="btn btn-ghost wk-nav" id="prevW">&larr; Prev Week</button>
+    <div class="week-head-center">
+      <div class="wk-meta" id="wkMeta"></div>
+      <div class="wk-phase" id="wkPhase"></div>
+      <div class="wk-sub" id="wkSub"></div>
+      <div class="wk-name" id="wkName"></div>
+    </div>
+    <button class="btn btn-ghost wk-nav" id="nextW">Next Week &rarr;</button>
+  </div>
+  <div class="slider-wrap">
+    <input type="range" min="0" max="17" step="1" value="0" id="wkSlider" aria-label="Week selector">
+  </div>
+  <div class="cal-grid" id="calGrid"></div>
+  <div class="legend" id="sportLegend"></div>
+</section>
+
+<section id="overview" style="background:var(--bg2);border-top:1px solid var(--line)">
+  <div class="sec-label">&sect;02 &nbsp;&middot;&nbsp; OVERVIEW</div>
+  <div class="ov-card">
+    <div class="ov-left">
+      <div class="ov-meta" id="ovMeta"></div>
+      <div class="ov-phase" id="ovPhase"></div>
+      <div class="ov-desc" id="ovDesc"></div>
+      <div class="ov-week-of" id="ovWeekOf"></div>
+      <a class="btn" href="#calendar" id="ovBtn">View Daily Workouts &rarr;</a>
+    </div>
+    <div class="ov-stats" id="ovStats"></div>
+  </div>
+  <div class="chart-labels"><span>&larr; Aug 3</span><span>Click a week</span><span>Race &rarr;</span></div>
+  <div class="chart" id="chart"></div>
+  <div class="phase-legend" id="phaseLegend"></div>
+</section>
+
+<section id="results">
+  <div class="sec-label">&sect;03 &nbsp;&middot;&nbsp; THE RECEIPTS</div>
+  <div class="results-intro">This plan wasn't pulled off a shelf — it's built from three years of your coach's own logged training:
+    the same 3-weeks-on / 1-week-recovery rhythm, the same workout library (ANT rides, anaerobic tempo runs,
+    brick runs off the bike), and the same race-week protocol that produced every finish below. Times are from Coach Scott's Garmin-logged race files.
+    The road's been ridden — now it's your turn, Grant.</div>
+  <div class="res-grid" id="resGrid"></div>
+</section>
+
+<div class="foot-stats" id="footStats"></div>
+
+<footer>
+  <div class="palms">
+    <svg width="90" height="34" viewBox="0 0 90 34" fill="none">
+      <path d="M20 33c-1-10-.7-18 1-25M45 33c-1-12-.7-21 1-29M70 33c-1-9-.7-16 1-22" stroke="#ff7847" stroke-width="1.4" stroke-linecap="round"/>
+      <path d="M21.5 8C18 5 14 4.3 10 6c3.7.5 6.9 1.6 9.5 3.4M21.5 8c-.5-4 .8-6.8 4-8.2-1.6 2.9-2 5.4-1.4 7.6M21.5 8c2.5-3 5.7-3.9 9.5-2.8-3.4 1-6 2.5-7.7 4.4M46.5 4C42.6.7 38.2-.1 33.5 1.8c4.2.6 7.8 1.9 10.7 3.9M46.5 4c-.6-4.5 1-7.7 4.5-9.3-1.8 3.3-2.3 6.1-1.6 8.6M46.5 4c2.8-3.4 6.4-4.4 10.7-3.1-3.9 1.1-6.8 2.8-8.7 5M71.5 11c-3.1-2.7-6.7-3.3-10.5-1.8 3.3.4 6.2 1.4 8.5 3M71.5 11c-.4-3.6.8-6.1 3.6-7.4-1.4 2.6-1.8 4.8-1.2 6.8M71.5 11c2.2-2.7 5.1-3.5 8.5-2.5-3 .9-5.4 2.2-6.9 3.9" stroke="#2fd6b0" stroke-width="1.3" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <p>GRANT CHUCRI'S ROAD TO IRONMAN 70.3 &middot; LA QUINTA &middot; 12.06.2026<br>
+     COACHED BY SCOTT &middot; BUILT FROM 3 YEARS OF COACH DATA &middot; SWIM 1.2 MI &middot; BIKE 56 MI &middot; RUN 13.1 MI</p>
+</footer>
+
+<script>
+/* ============================================================
+   PLAN DATA — 18 weeks · Mon Aug 3 2026 → Race Sun Dec 6 2026
+   Modeled on the athlete's 2023-2026 TrainingPeaks history
+   (70.3 Oceanside macrocycles, IM Austria build, marathon blocks)
+   ============================================================ */
+const RACE_DATE = new Date(2026,11,6);      // Dec 6 2026
+const PLAN_START = new Date(2026,7,3);      // Mon Aug 3 2026
+
+// helpers: sport card constructors
+const R  =(t,d,mi,n,i)=>({s:'RUN',t,d,mi,n,i:i||'AE'});
+const B  =(t,d,mi,n,i)=>({s:'CYCLING',t,d,mi,n,i:i||'AE'});
+const S  =(t,d,m,n,i)=>({s:'SWIM',t,d,m,n,i:i||'AE'});
+const ST =(t,d,n)=>({s:'STRENGTH',t,d,n,i:'AE'});
+const Y  =(t,d,n)=>({s:'YOGA',t,d,n,i:'AE'});
+const BR =(t,d,mi,n)=>({s:'BRICK',t,d,mi,n,i:'AN'});
+const REST=(n)=>({s:'REST',t:'Day off',d:0,n});
+const RACE=(t,d,n)=>({s:'RACE',t,d,n,i:'AN',race:true});
+
+/*PLAN-START*/
+const PLAN=[
+{w:1,phase:'BASE',rec:false,name:'Macrocycle kickoff — aerobic rebuild',days:[
+ [ST('30 min strengthening program',30,'Full body — start of the La Quinta macrocycle')],
+ [B('60 min aerobic cycling',60,17,'Zone 2 · flat or rolling terrain')],
+ [R('5 km progressive from ZONE 1 to ZONE 4',30,3.1,'Wake the legs up — finish fast'),ST('15 min strengthening program',15,'Core focus')],
+ [R('60 min aerobic running',60,6.5,'Steady Zone 2')],
+ [S('5x50 short + 5x50 long pause',60,1800,'Technique — feel the difference'),ST('15 min strengthening program',15,'Quick session')],
+ [B('fartlek cycling 100 min',100,26,'Mixed intensity · varied terrain')],
+ [S('5x50 short + 5x50 long pause',60,1800,'Technique repeat'),ST('15 min strengthening program',15,'Post-swim')]]},
+{w:2,phase:'BASE',rec:false,name:'Base — frequency & consistency',days:[
+ [B('fartlek cycling 75 min',75,20,'Mixed intensity'),R('LOW AEROBIC 8 km Run from ZONE 1 to ZONE 2',50,5,'Easy build')],
+ [ST('15 min strengthening program',15,'Core + stability')],
+ [S('5x50 short + 5x50 long pause',60,1800,'Technique block continues')],
+ [ST('15 min strengthening program',15,'Quick session'),Y('Preferred day of mobility and Yoga',30,'Mobility focus')],
+ [R('LSD run 70 min',70,7.5,'Long steady distance · Zone 2')],
+ [S('10x50m technique focus',45,2000,'Relaxed 50s · pick one drill cue per rep'),B('60 min aerobic cycling',60,16,'Zone 2 endurance')],
+ [B('60 min aerobic cycling',60,17,'Ride first…'),R('35 minutes run after BIKE',35,4,'First brick of the block — keep it aerobic')]]},
+{w:3,phase:'BASE',rec:false,name:'Base — first quality touches',days:[
+ [R('Anaerobic tempo running 15+10',50,5.5,'15 min @ tempo + 10 min @ threshold','AN')],
+ [ST('15 min strengthening program',15,'Core + stability')],
+ [B('90 min aerobic cycling',90,24,'Zone 2'),R('35 minutes run after BIKE',35,4,'Brick — easy aerobic off the bike')],
+ [S('Aerobic Pyramid 1 km',60,1500,'100-200-300-200-100 style pyramid')],
+ [B('60 min aerobic cycling',60,17,'Easy spin'),R('Recovery Running 5 km',30,3.1,'Easy cooldown run')],
+ [ST('15 min strengthening program',15,'Quick session'),B('60 min aerobic cycling',60,17,'Optional Zone 2 spin')],
+ [S('10x50m technique focus',45,2000,'Relaxed 50s · pick one drill cue per rep')]]},
+{w:4,phase:'BASE',rec:false,name:'Base — first big week',days:[
+ [B('90 min aerobic cycling',90,26,'Zone 2'),R('Anaerobic tempo running 15+10',50,6,'15 min tempo + 10 min threshold','AN')],
+ [ST('15 min strengthening program',15,'Core + stability')],
+ [S('Aerobic Swim 2,0 km (21x50)',60,2000,'21x50 at aerobic pace')],
+ [B('60 min aerobic cycling',60,17,'Easy spin'),R('Recovery Running 5 km',30,3.1,'Easy cooldown run')],
+ [S('Aerobic Pyramid 1 km',60,1500,'Aerobic pyramid')],
+ [B('90 min aerobic cycling',90,24,'Zone 2 endurance'),R('35 minutes run after BIKE',35,4,'Brick','AN')],
+ [ST('15 min strengthening program',15,'Wrap the block')]]},
+{w:5,phase:'BASE',rec:true,name:'Recovery + benchmark tests',days:[
+ [R('Recovery Running 5 km',30,3.1,'Very easy · IF ~0.45'),Y('Preferred day of mobility and Yoga',30,'Recovery week begins')],
+ [ST('Morning Strength',45,'Full body — quality over load')],
+ [B('FTP bike test — 20 min',50,15,'ASSESSMENT · reset your power zones','AN')],
+ [R('Recovery Running 5 km',30,3.1,'Shake out the test')],
+ [ST('30 min strengthening program',30,'Full body')],
+ [S('Benchmark swim 2x5x100 — steady',60,2000,'Time your steady 100s to track progress · smooth technique')],
+ [R('Recovery Running 5 km',30,3.1,'Easy'),S('recovery swimming 30 min',30,1400,'Loose technique swim')]]},
+{w:6,phase:'BASE',rec:false,name:'Base 2 — aerobic depth',days:[
+ [ST('15 min strengthening program',15,'Core + stability')],
+ [S('Aerobic Pyramid 1.6 km + 0.9 km',60,2500,'Big aerobic pyramid')],
+ [B('90 min aerobic cycling',90,26,'Zone 2'),R('35 minutes run after BIKE',35,3.6,'Brick — aerobic')],
+ [S('Aerobic swim with short splits (13x50, 5x100)',60,2000,'Easy pace · long pauses · focus on form')],
+ [R('Anaerobic tempo running 20+15',55,6,'20 min tempo + 15 min threshold','AN'),B('60 min aerobic cycling',60,17,'Easy spin after')],
+ [ST('30 min strengthening program',30,'Full body')],
+ [R('LSD run 95 min',95,10.5,'Long steady distance'),B('60 min aerobic cycling',60,16,'Optional recovery spin')]]},
+{w:7,phase:'BASE',rec:false,name:'Base 2 — threshold touches',days:[
+ [R('Anaerobic tempo running 15+10',50,5.9,'Tempo + threshold','AN')],
+ [B('fartlek cycling 120 min',120,31,'Mixed intensity · 2 hours'),S('Aerobic Pyramid 1.6 km',60,2000,'Aerobic pyramid')],
+ [B('ANT 55-34-21 (in watts)',186,54,'Threshold pyramid · 55-34-21 min blocks','AN'),R('Recovery Running 5 km',30,3.1,'5 km cooldown after the ride')],
+ [ST('15 min strengthening program',15,'Core')],
+ [R('17 km Run',105,10.6,'Long aerobic run')],
+ [S('Aerobic Swim (2x3x100 sets)',60,2900,'Steady 100s in small sets · relaxed breathing')],
+ [ST('15 min strengthening program',15,'Easy day otherwise')]]},
+{w:8,phase:'BASE',rec:false,name:'Base 2 — long ride milestone',days:[
+ [S('Aerobic Swim (15x100)',60,2900,'Steady 100s')],
+ [ST('30 min strengthening program',30,'Full body')],
+ [B('90km Cycling',210,56,'Long ride · ~3:30 · race distance on the bike'),R('15 minutes run after LONG BIKE',15,1.6,'Short transition run','AN')],
+ [S('Aerobic swim 2x400 (5 min rest)',45,2100,'Steady 400s · hold your form when tired')],
+ [B('Cycling 3x5min @ 90-105% FTP',50,15,'FTP intervals','AN'),R('12 km Run from low to high ZONE 2',75,7.5,'Progressive Z2')],
+ [B('30 min aerobic cycling as recovery',30,7,'Legs loose')],
+ [B('34-21 ANT Cycling',108,32,'Threshold blocks','AN'),R('Anaerobic tempo running 20+15',55,7,'Tempo + threshold','AN')]]},
+{w:9,phase:'BASE',rec:true,name:'Recovery — absorb the work',days:[
+ [REST('Recovery week — let the fitness land')],
+ [S('recovery swimming 30 min',30,1400,'Loose'),ST('30 min strengthening program',30,'Full body')],
+ [B('60 min aerobic cycling',60,20,'Zone 2'),R('Recovery Running 5 km',30,3.2,'Very easy')],
+ [ST('Evening Strength',30,'Light'),Y('Afternoon Yoga',30,'Mobility')],
+ [R('Recovery Running 5 km',30,3.1,'Very easy'),S('recovery swimming 30 min',30,1350,'Loose')],
+ [REST('Full day off')],
+ [B('60 min aerobic cycling',60,18,'Zone 2'),R('Afternoon Running',30,3.3,'Easy')]]},
+{w:10,phase:'BUILD',rec:false,name:'Build — speed returns',days:[
+ [R('Recovery Running 5 km',30,3.2,'Flush from recovery week')],
+ [R('run 4x1000 ZONE 4 (3 min rest) + 2x200 fast',60,6,'VO2 1000s + fast 200s','AN'),S('Aerobic Pyramid 1 km',60,1500,'Aerobic pyramid')],
+ [B('90 min aerobic cycling',90,25,'Zone 2'),R('35 minutes run after BIKE',35,4,'Brick — aerobic')],
+ [S('Aerobic swim (13x100)',70,2500,'Steady 100s · consistent stroke count')],
+ [ST('30 min strengthening program',30,'Full body')],
+ [B('60km Cycling',135,37,'Long ride · ~2:15')],
+ [R('17 km Run',95,10.6,'Long aerobic run')]]},
+{w:11,phase:'BUILD',rec:false,name:'Build — long-course strength',days:[
+ [S('Aerobic Swim 2,0 km (2x5x100)',55,2000,'Controlled 100s')],
+ [R('15 km Run to high ZONE 2',75,9.3,'Steady push to high Z2')],
+ [B('fartlek cycling 90 min',90,24,'Mixed intensity'),R('35 minutes run after BIKE',35,4.4,'Brick — aerobic')],
+ [S('Aerobic swim 2x400 (5 min rest)',45,2100,'Steady 400s · hold your form when tired'),ST('30 min strengthening program',30,'Full body')],
+ [B('Cycling TAC Hills 3x8min',64,19,'Hill strength · 3x8 min','AN')],
+ [B('80km Cycling',172,50,'Long ride · ~2:50')],
+ [R('LSD run 100 min',100,10.5,'Long steady distance'),S('OPTIONAL recovery swimming 30 min',30,1400,'Easy technique swim')]]},
+{w:12,phase:'BUILD',rec:false,name:'Build — biggest week',days:[
+ [S('Aerobic swim (2x8x100)',60,2700,'Two rounds of steady 100s · easy between rounds')],
+ [B('fartlek cycling 120 min',120,32,'Mixed intensity · 2 hours')],
+ [R('Anaerobic tempo running 20-15-10',55,6.5,'Descending tempo blocks','AN')],
+ [S('Aerobic swim continuous (2x700) 2.2 km',60,2200,'Continuous aerobic'),ST('30 min strengthening program',30,'Full body')],
+ [B('60 min aerobic cycling',60,17,'Easy spin — save the legs')],
+ [B('ANT 55-34-21 (in watts)',186,52,'Threshold pyramid — key ride','AN'),R('35 minutes run after BIKE',35,4.1,'Brick — aerobic')],
+ [R('LSD run 110 min',110,12,'Longest run of the plan')]]},
+{w:13,phase:'BUILD',rec:true,name:'Recovery + race-pace checks',days:[
+ [REST('Recovery week')],
+ [ST('Afternoon Strength',40,'Full body')],
+ [S('Benchmark swim 200+400 — steady',45,1800,'Relaxed benchmark · confirm a comfortable race pace')],
+ [B('60 min aerobic cycling as recovery',60,16,'Loose spin')],
+ [ST('15 min strengthening program',15,'Core'),Y('Preferred day of mobility and Yoga',30,'Mobility')],
+ [S('OWS as recovery',30,1000,'OPEN WATER · easy — practice sighting')],
+ [R('Recovery Running 5 km',30,3.2,'Easy'),B('30 min aerobic cycling as recovery',30,7,'Spin out')]]},
+{w:14,phase:'PEAK',rec:false,name:'Race-specific — pace lock-in',days:[
+ [R('OPTIONAL: Recovery Running 5 km',30,3.4,'Easy or off')],
+ [S('Aerobic swim 3x400 (5 min rest)',60,2500,'Steady 400s · smooth and controlled')],
+ [B('Cycling 5x3min @ ZONE 3',45,14,'Z3 surges','AN'),R('35 minutes run after BIKE',35,5.2,'Brick at race feel','AN'),S('Aerobic swim (3x750m)',60,3000,'Race-distance repeats at steady aerobic pace')],
+ [R('60 min aerobic running with anaerobic end',60,7,'Finish fast','AN')],
+ [ST('15 min strengthening program',15,'Core')],
+ [B('34-21-13 ANT Cycling',120,40,'Race-watt blocks','AN')],
+ [R('20 km Run with 10 km at Half-marathon pace',106,12.4,'Key run — 10 km at HM pace','AN')]]},
+{w:15,phase:'PEAK',rec:false,name:'Race-specific — race simulation',days:[
+ [REST('Day off')],
+ [B('34-21-13 ANT Cycling',130,37,'Race-watt blocks','AN'),S('Aerobic swim (750m repeats)',45,2400,'750s at steady aerobic effort')],
+ [S('Fartlek in the OWS — skills practice',45,1100,'Sighting · drafting · race starts')],
+ [B('60km Cycling',130,34,'Steady long ride'),R('15 minutes run after LONG BIKE',15,1.6,'Transition legs','AN')],
+ [ST('15 min strengthening program',15,'Core')],
+ [R('12 km Run from low to high ZONE 2',75,8,'Progressive')],
+ [BR('Race specific brick training 34+21+21+13',145,42,'RACE SIM · race-watt bike blocks + fast transition run'),R('run off the bike',30,3.5,'Race-pace finish to the sim','AN')]]},
+{w:16,phase:'PEAK',rec:false,name:'Peak — final overload',days:[
+ [REST('Day off')],
+ [R('30 min aerobic running',30,3.3,'Easy'),S('Aerobic swim (2x750m)',50,2500,'Race-distance repeats · steady and smooth')],
+ [B('Cycling 6x2min @ ZONE 3',60,14,'Short Z3 surges','AN')],
+ [R('40 min aerobic running',40,4.8,'Steady'),ST('15 min strengthening program',15,'Core')],
+ [S('aerobic swim (19x100)',60,3000,'Volume 100s — last big swim')],
+ [B('70km Cycling',150,43,'LAST LONG RIDE'),R('15 minutes run after LONG BIKE',15,1.5,'Transition run','AN')],
+ [R('15 km Run before IRONMAN',70,9.3,'Final long-ish run · steady and smooth')]]},
+{w:17,phase:'TAPER',rec:false,name:'Taper — sharpen & rest',days:[
+ [R('Recovery Running 5 km',30,3.1,'Easy'),ST('15 min strengthening program',15,'Last strength session')],
+ [B('Cycling 5x5min @ ZONE 3',60,17,'Keep the engine warm','AN')],
+ [R('10 km Run to IM70.3 pace',60,6.2,'RACE-PACE REHEARSAL','AN')],
+ [S('Aerobic swim (3x750m)',60,3000,'Race-distance repeats · relaxed and smooth')],
+ [REST('Full rest')],
+ [B('60 min aerobic cycling',60,17,'Easy gear check spin'),R('15 minutes run after BIKE',15,1.6,'Quick legs','AN')],
+ [R('8 km Run from low to high ZONE 2',45,5,'Smooth progressive'),S('recovery swimming 30 min',30,1400,'Feel the water')]]},
+{w:18,phase:'RACE WEEK',rec:false,name:'Race week — Ironman 70.3 La Quinta',days:[
+ [B('cycling in the race week',90,23,'Easy spin with a few openers'),R('Recovery Running 5 km',30,3.3,'Very easy')],
+ [REST('Day off — travel, hydrate, sleep')],
+ [REST('Day off — stay off your feet')],
+ [R('Pre-race impulse running',40,4,'Short Z2 + race-pace pickups','AN'),S('Pre-race impulse swimming',40,2000,'Easy openers · smooth strokes')],
+ [B('Pre-race impulse cycling',60,20,'Bike check + short efforts','AN'),S('Pre-race impulse swimming',40,1100,'Short and sharp')],
+ [R('Pre-race shakeout',20,2,'10 min jog + 4 strides · then legs up'),S('OPTIONAL race-venue swim 15 min',15,600,'Feel the lake if available')],
+ [RACE('IRONMAN 70.3 LA QUINTA',330,'Swim 1.2 mi · Bike 56 mi · Run 13.1 mi — see you at the line')]]}
+];
+/*PLAN-END*/
+
+/* ---- past races (from the athlete's logged Garmin race files) ---- */
+const RESULTS=[
+ {d:'JUL 2023',n:'Jack & Hill Downhill Marathon',t:'3:28',s:'26.2 mi run'},
+ {d:'NOV 2023',n:'Silver Strand Half Marathon · San Diego',t:'1:36',s:'Goal was sub-1:37 · nailed it'},
+ {d:'APR 2024',n:'IRONMAN 70.3 Oceanside',t:'~6:00',s:'Swim 0:42 · Bike 3:26 · Run 1:47'},
+ {d:'OCT 2024',n:'Marathon · Washington D.C.',t:'3:58',s:'A-race · 26.7 mi logged'},
+ {d:'MAY 2025',n:'IRONMAN 70.3',t:'~5:50',s:'Swim 0:34 · Bike 3:00 · Run 2:08'},
+ {d:'JUN 2025',n:'IRONMAN Austria · Klagenfurt',t:'Full IM',s:'Swim 1:15 · Bike 6:23 · Run 5:10'},
+ {d:'NOV 2025',n:'Silver Strand Half Marathon',t:'1:42',s:'13.2 mi logged'},
+ {d:'MAR 2026',n:'IRONMAN 70.3 Oceanside',t:'~5:25',s:'Swim 0:35 · Bike 2:53 · Run 1:48 — 70.3 PR build'}
+];
+
+/* ============================================================
+   RENDERING
+   ============================================================ */
+const SPORT_COLOR={RUN:'--run',CYCLING:'--bike',SWIM:'--swim',STRENGTH:'--strength',YOGA:'--yoga',BRICK:'--brick',REST:'--rest',RACE:'--race'};
+const PHASE_COLOR={'BASE':'#31446e','BUILD':'#3d5a94','PEAK':'#5379c4','TAPER':'#7c94c9','RACE WEEK':'#c9a227','RECOVERY':'#42566a'};
+const PHASE_DESC={'BASE':'Aerobic base building','BUILD':'Volume + race-watt intensity','PEAK':'Race-specific preparation','TAPER':'Sharpen and absorb','RACE WEEK':'Execute. Nothing new.','RECOVERY':'Absorb the work — easy on purpose'};
+const phaseLabel=wk=>wk.rec?'RECOVERY':wk.phase;
+const DAY_NAMES=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+const MONTHS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const cssVar=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+function weekStart(i){const d=new Date(PLAN_START);d.setDate(d.getDate()+i*7);return d}
+function dayDate(i,j){const d=weekStart(i);d.setDate(d.getDate()+j);return d}
+function fmtDate(d){return MONTHS[d.getMonth()]+' '+d.getDate()}
+function sameDay(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate()}
+function hrs(min){const h=Math.floor(min/60),m=Math.round(min%60);return m? h+'h '+(m<10?'0':'')+m+'m' : h+'h'}
+
+function weekTotals(wk){
+  let min=0,run=0,bike=0,swim=0;
+  wk.days.flat().forEach(x=>{
+    if(x.race)return; // race day counts as racing, not training load
+    min+=x.d||0;
+    if(x.s==='RUN')run+=x.mi||0;
+    if(x.s==='CYCLING'||x.s==='BRICK')bike+=x.mi||0;
+    if(x.s==='SWIM')swim+=(x.m||0)/1609.34;
+  });
+  return {min,run,bike,swim};
+}
+
+const TODAY=new Date(); TODAY.setHours(0,0,0,0);
+function currentWeekIndex(){
+  const diff=Math.floor((TODAY-PLAN_START)/(864e5));
+  return Math.max(0,Math.min(17,Math.floor(diff/7)));
+}
+const CURRENT_W=currentWeekIndex();
+const PLAN_ACTIVE = TODAY>=PLAN_START && TODAY<=RACE_DATE;
+let selW=CURRENT_W;
+
+/* ---- rotating quote (new one every refresh) ---- */
+const QUOTES=[
+ {q:"You can quit and they won't care. But you will always know.",a:'JOHN COLLINS, IRONMAN FOUNDER'},
+ {q:"When your mind is telling you you're done, you're really only 40 percent done.",a:'DAVID GOGGINS'},
+ {q:"You are in danger of living a life so comfortable and soft that you will die without ever realizing your true potential.",a:'DAVID GOGGINS'},
+ {q:"Suffering is a test. That's all it is. Suffering is the true test of life.",a:'DAVID GOGGINS'},
+ {q:"Only the disciplined ones in life are free. If you are undisciplined, you are a slave to your moods and your passions.",a:'ELIUD KIPCHOGE'},
+ {q:"No human is limited.",a:'ELIUD KIPCHOGE'},
+ {q:"You can keep going and your legs might hurt for a week, or you can quit and your mind will hurt for a lifetime.",a:'MARK ALLEN, 6x IRONMAN WORLD CHAMPION'},
+ {q:"You don't have to go fast. You just have to go.",a:'MIRINDA CARFRAE'},
+ {q:"You have power over your mind — not outside events. Realize this, and you will find strength.",a:'MARCUS AURELIUS'},
+ {q:"It is not because things are difficult that we do not dare; it is because we do not dare that things are difficult.",a:'SENECA'},
+ {q:"No man is free who is not master of himself.",a:'EPICTETUS'},
+ {q:"We are what we repeatedly do. Excellence, then, is not an act, but a habit.",a:'ATTRIBUTED TO ARISTOTLE'}
+];
+(function(){
+  const pick=QUOTES[Math.floor(Math.random()*QUOTES.length)];
+  document.getElementById('quoteText').textContent=pick.q;
+  document.getElementById('quoteAttr').textContent='— '+pick.a;
+})();
+
+/* ---- nav T-minus ---- */
+const daysToRace=Math.max(0,Math.round((RACE_DATE-TODAY)/864e5));
+document.getElementById('tminus').textContent='T-'+daysToRace+'d';
+
+/* ---- calendar ---- */
+function renderWeek(){
+  const wk=PLAN[selW];
+  const tot=weekTotals(wk);
+  const ws=weekStart(selW), we=dayDate(selW,6);
+  const tRace=Math.max(0,Math.round((RACE_DATE-ws)/864e5));
+  const isCur=selW===CURRENT_W&&PLAN_ACTIVE;
+  document.getElementById('wkMeta').innerHTML=
+    'WEEK '+wk.w+' OF 18 &nbsp;·&nbsp; T-'+tRace+
+    (isCur?' &nbsp;<span class="badge">THIS WEEK</span>':'')+
+    (wk.rec?' &nbsp;<span class="badge rec">RECOVERY</span>':'')+
+    (wk.phase==='RACE WEEK'?' &nbsp;<span class="badge race">RACE</span>':'');
+  const ph=document.getElementById('wkPhase');
+  ph.textContent=phaseLabel(wk); ph.className='wk-phase'+(wk.phase==='RACE WEEK'?' race':'')+(wk.rec?' rec':'');
+  document.getElementById('wkSub').textContent=fmtDate(ws)+' – '+fmtDate(we)+', 2026 · '+hrs(tot.min)+' planned';
+  document.getElementById('wkName').textContent=wk.name;
+  document.getElementById('wkSlider').value=selW;
+
+  const grid=document.getElementById('calGrid');
+  grid.innerHTML='';
+  wk.days.forEach((day,j)=>{
+    const dd=dayDate(selW,j);
+    const isToday=sameDay(dd,TODAY);
+    const isRace=sameDay(dd,RACE_DATE);
+    const col=document.createElement('div');
+    col.className='day-col'+(isToday?' today':'')+(isRace?' raceday':'');
+    if(isToday)col.id='today-col';
+    let html='<div class="day-head"><div><div class="day-name">'+DAY_NAMES[j]+'</div>'+
+      '<div class="day-date">'+fmtDate(dd)+'</div></div>'+
+      (isToday?'<span class="today-tag">TODAY</span>':'')+(isRace&&!isToday?'<span class="race-tag">RACE DAY</span>':'')+'</div>';
+    day.forEach(x=>{
+      const c=cssVar(SPORT_COLOR[x.s]);
+      const stats=[];
+      if(x.d)stats.push(x.race?'~'+hrs(x.d):(x.d<60?x.d+'min':hrs(x.d)));
+      if(x.mi)stats.push(x.mi+' mi');
+      if(x.m)stats.push(x.m+'m');
+      html+='<div class="wo'+(x.race?' race-card':'')+(x.s==='REST'?' rest-card':'')+'" style="border-left-color:'+c+'">'+
+        '<div class="wo-top"><span class="wo-sport" style="color:'+c+'">'+x.s+'</span>'+
+        (x.i&&x.s!=='REST'?'<span class="wo-int'+(x.i==='AN'?' an':'')+'">'+x.i+'</span>':'')+'</div>'+
+        '<div class="wo-title">'+x.t+'</div>'+
+        (stats.length?'<div class="wo-stats">'+stats.join(' · ')+'</div>':'')+
+        (x.n?'<div class="wo-note">'+x.n+'</div>':'')+'</div>';
+    });
+    col.innerHTML=html;
+    grid.appendChild(col);
+  });
+  renderOverviewCard();
+  renderChart();
+}
+
+/* ---- legend ---- */
+(function(){
+  const lg=document.getElementById('sportLegend');
+  ['RUN','CYCLING','SWIM','STRENGTH','YOGA','BRICK','RACE'].forEach(s=>{
+    lg.innerHTML+='<span class="lg"><i style="background:'+cssVar(SPORT_COLOR[s])+'"></i>'+s+'</span>';
+  });
+})();
+
+/* ---- overview ---- */
+function renderOverviewCard(){
+  const wk=PLAN[selW], tot=weekTotals(wk), ws=weekStart(selW);
+  const tRace=Math.max(0,Math.round((RACE_DATE-ws)/864e5));
+  const isCur=selW===CURRENT_W&&PLAN_ACTIVE;
+  document.getElementById('ovMeta').innerHTML='WEEK '+wk.w+' / 18 &nbsp;·&nbsp; T-'+tRace+
+    (isCur?' &nbsp;<span class="badge">THIS WEEK</span>':'')+(wk.rec?' &nbsp;<span class="badge rec">RECOVERY</span>':'');
+  const op=document.getElementById('ovPhase');
+  op.textContent=phaseLabel(wk); op.className='ov-phase'+(wk.phase==='RACE WEEK'?' race':'')+(wk.rec?' rec':'');
+  document.getElementById('ovDesc').textContent=PHASE_DESC[phaseLabel(wk)]||'';
+  document.getElementById('ovWeekOf').textContent='Week of '+fmtDate(ws)+', 2026 · '+wk.name;
+  const st=document.getElementById('ovStats');
+  st.innerHTML=
+    '<div class="stat"><div class="k">Total</div><div class="v">'+(tot.min/60).toFixed(tot.min%60?1:0)+'<small>hrs</small></div></div>'+
+    '<div class="stat"><div class="k">Run</div><div class="v">'+Math.round(tot.run)+'<small>mi</small></div></div>'+
+    '<div class="stat"><div class="k">Bike</div><div class="v">'+Math.round(tot.bike)+'<small>mi</small></div></div>'+
+    '<div class="stat"><div class="k">Swim</div><div class="v">'+tot.swim.toFixed(1)+'<small>mi</small></div></div>';
+}
+
+/* ---- chart ---- */
+function renderChart(){
+  const ch=document.getElementById('chart');
+  ch.innerHTML='';
+  const maxH=Math.max(...PLAN.map(w=>weekTotals(w).min));
+  PLAN.forEach((w,i)=>{
+    const t=weekTotals(w);
+    const bar=document.createElement('div');
+    const key=w.phase==='RACE WEEK'?'RACE WEEK':(w.rec?'RECOVERY':w.phase);
+    bar.className='bar'+(i===CURRENT_W&&PLAN_ACTIVE?' current':'');
+    bar.style.height=Math.max(8,Math.round(t.min/maxH*100))+'%';
+    bar.style.background=PHASE_COLOR[key];
+    if(i===selW)bar.style.filter='brightness(1.6)';
+    bar.innerHTML='<div class="tip">W'+w.w+' · '+w.phase+(w.rec?' (recovery)':'')+' · '+hrs(t.min)+'</div>';
+    bar.onclick=()=>{selW=i;renderWeek();document.getElementById('calendar').scrollIntoView({behavior:'smooth'})};
+    ch.appendChild(bar);
+  });
+  const pl=document.getElementById('phaseLegend');
+  pl.innerHTML='';
+  Object.entries(PHASE_COLOR).forEach(([k,c])=>{
+    pl.innerHTML+='<span class="lg"><i style="background:'+c+'"></i>'+k+'</span>';
+  });
+  if(PLAN_ACTIVE)pl.innerHTML+='<span class="lg"><i style="background:transparent;border:2px solid #cfe0ff;width:8px;height:8px"></i>THIS WEEK</span>';
+}
+
+/* ---- results ---- */
+(function(){
+  const rg=document.getElementById('resGrid');
+  RESULTS.forEach(r=>{
+    rg.innerHTML+='<div class="res"><div class="r-date">'+r.d+'</div><div class="r-name">'+r.n+'</div>'+
+      '<div class="r-time">'+r.t+'</div><div class="r-split">'+r.s+'</div></div>';
+  });
+})();
+
+/* ---- footer stats ---- */
+(function(){
+  const wk=PLAN[CURRENT_W];
+  const totalMin=PLAN.reduce((a,w)=>a+weekTotals(w).min,0);
+  document.getElementById('footStats').innerHTML=
+    '<div class="fs"><div class="n gold">'+daysToRace+'</div><div class="t">Days to race</div></div>'+
+    '<div class="fs"><div class="n">'+(PLAN_ACTIVE?wk.w:(TODAY<PLAN_START?'–':'✓'))+'</div><div class="t">Current week</div></div>'+
+    '<div class="fs"><div class="n">18</div><div class="t">Total weeks</div></div>'+
+    '<div class="fs"><div class="n">'+Math.round(totalMin/60)+'</div><div class="t">Planned hours</div></div>'+
+    '<div class="fs"><div class="n" style="font-size:34px;padding-top:12px">'+(PLAN_ACTIVE?wk.phase:(TODAY<PLAN_START?'PRE-SEASON':'DONE'))+'</div><div class="t">Current phase</div></div>';
+})();
+
+/* ---- controls ---- */
+document.getElementById('prevW').onclick=()=>{if(selW>0){selW--;renderWeek()}};
+document.getElementById('nextW').onclick=()=>{if(selW<17){selW++;renderWeek()}};
+document.getElementById('wkSlider').oninput=e=>{selW=+e.target.value;renderWeek()};
+document.getElementById('btn-today').onclick=e=>{
+  selW=CURRENT_W;renderWeek();
+  setTimeout(()=>{const t=document.getElementById('today-col');if(t)t.scrollIntoView({behavior:'smooth',block:'center'})},80);
+};
+document.getElementById('ovBtn').onclick=()=>{};
+
+renderWeek();
+</script>
+</body>
+</html>
