@@ -173,16 +173,6 @@
   .bar:hover .tip{opacity:1;visibility:visible}
   .phase-legend{display:flex;flex-wrap:wrap;gap:22px;margin-top:24px}
 
-  /* ---------- RESULTS ---------- */
-  .results-intro{color:var(--ink-dim);font-size:15px;max-width:760px;margin-bottom:36px;line-height:1.6}
-  .res-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
-  .res{border:1px solid var(--line);background:var(--panel);padding:22px;position:relative;overflow:hidden}
-  .res::after{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--sun1),var(--sun3))}
-  .res .r-date{font-family:var(--font-mono);font-size:10px;letter-spacing:.24em;color:var(--ink-faint);text-transform:uppercase}
-  .res .r-name{font-family:var(--font-display);font-size:16px;margin:9px 0 12px;line-height:1.25}
-  .res .r-time{font-family:var(--font-mono);font-size:13px;color:var(--sun1);letter-spacing:.05em}
-  .res .r-split{font-family:var(--font-mono);font-size:10.5px;color:var(--ink-dim);margin-top:7px;letter-spacing:.04em;line-height:1.7}
-
   /* ---------- FOOTER STATS ---------- */
   .foot-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:20px;padding:70px 44px 60px;
               border-top:1px solid var(--line);background:#060a13;text-align:center}
@@ -224,7 +214,6 @@
   <div class="nav-links">
     <a href="#calendar">Calendar</a>
     <a href="#overview">Overview</a>
-    <a href="#results">Past Races</a>
   </div>
   <div class="tminus" id="tminus">T-000d</div>
 </nav>
@@ -308,15 +297,6 @@
   <div class="chart-labels"><span>&larr; Aug 3</span><span>Click a week</span><span>Race &rarr;</span></div>
   <div class="chart" id="chart"></div>
   <div class="phase-legend" id="phaseLegend"></div>
-</section>
-
-<section id="results">
-  <div class="sec-label">&sect;03 &nbsp;&middot;&nbsp; THE RECEIPTS</div>
-  <div class="results-intro">This plan wasn't pulled off a shelf — it's built from three years of your coach's own logged training:
-    the same 3-weeks-on / 1-week-recovery rhythm, the same workout library (ANT rides, anaerobic tempo runs,
-    brick runs off the bike), and the same race-week protocol that produced every finish below. Times are from Coach Scott's Garmin-logged race files.
-    The road's been ridden — now it's your turn, Jason.</div>
-  <div class="res-grid" id="resGrid"></div>
 </section>
 
 <div class="foot-stats" id="footStats"></div>
@@ -500,18 +480,6 @@ const PLAN=[
 ];
 /*PLAN-END*/
 
-/* ---- past races (from the athlete's logged Garmin race files) ---- */
-const RESULTS=[
- {d:'JUL 2023',n:'Jack & Hill Downhill Marathon',t:'3:28',s:'26.2 mi run'},
- {d:'NOV 2023',n:'Silver Strand Half Marathon · San Diego',t:'1:36',s:'Goal was sub-1:37 · nailed it'},
- {d:'APR 2024',n:'IRONMAN 70.3 Oceanside',t:'~6:00',s:'Swim 0:42 · Bike 3:26 · Run 1:47'},
- {d:'OCT 2024',n:'Marathon · Washington D.C.',t:'3:58',s:'A-race · 26.7 mi logged'},
- {d:'MAY 2025',n:'IRONMAN 70.3',t:'~5:50',s:'Swim 0:34 · Bike 3:00 · Run 2:08'},
- {d:'JUN 2025',n:'IRONMAN Austria · Klagenfurt',t:'Full IM',s:'Swim 1:15 · Bike 6:23 · Run 5:10'},
- {d:'NOV 2025',n:'Silver Strand Half Marathon',t:'1:42',s:'13.2 mi logged'},
- {d:'MAR 2026',n:'IRONMAN 70.3 Oceanside',t:'~5:25',s:'Swim 0:35 · Bike 2:53 · Run 1:48 — 70.3 PR build'}
-];
-
 /* ============================================================
    RENDERING
    ============================================================ */
@@ -676,15 +644,6 @@ function renderChart(){
   });
   if(PLAN_ACTIVE)pl.innerHTML+='<span class="lg"><i style="background:transparent;border:2px solid #cfe0ff;width:8px;height:8px"></i>THIS WEEK</span>';
 }
-
-/* ---- results ---- */
-(function(){
-  const rg=document.getElementById('resGrid');
-  RESULTS.forEach(r=>{
-    rg.innerHTML+='<div class="res"><div class="r-date">'+r.d+'</div><div class="r-name">'+r.n+'</div>'+
-      '<div class="r-time">'+r.t+'</div><div class="r-split">'+r.s+'</div></div>';
-  });
-})();
 
 /* ---- footer stats ---- */
 (function(){
